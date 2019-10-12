@@ -86,7 +86,9 @@ var timeLeft = 75; // 75 seconds
 var score;
 var TIMER = setInterval(timeLeft, 1000); //1000ms = 1s
 var timerInterval;
-var highscoresArray = [];
+var highscoresArray = JSON.parse(localStorage.getItem("highscoresArray")) || [] ;
+
+
 
 //STARTS QUIZ BY CLICKING BUTTON
 startButton.addEventListener("click", startTimer);
@@ -97,11 +99,6 @@ function startTimer() {
     timeleft = 75;
     timeLeft--;
     navTimer.textContent = "Time: " + timeLeft;
-
-    // if(timeLeft === 0) {
-    //   score = timeLeft;
-    //   clearInterval(timerInterval);
-    // }
   }, 1000);
   startContainer.style.display = "none";
   quiz.style.display = "block";
@@ -166,8 +163,14 @@ function scoreRender() {
 
 submitBtn.addEventListener("click", function (event) {
   event.preventDefault();
+
   console.log("I am inside the highscores page!");
   var initialsInput = initialsText.value.trim();
+  // var objHighscores = [
+  //   {
+  //     //name: initialsInput,
+  //     score: timeLeft
+  //   }];
 
   // Return from function early if submitted initialsText is blank
   if (initialsInput === "") {
@@ -175,7 +178,8 @@ submitBtn.addEventListener("click", function (event) {
   }
 
   // Add new initialsText to initials array, clear the input
-  highscoresArray.push(initialsInput);
+  highscoresArray.push(initialsInput + "   ------- Score: " + timeLeft);
+  
   //initialsText.value = "";
   console.log("about to call storeHighscores");
   storeHighscores();
@@ -216,14 +220,13 @@ function initHighscores() {
   init();
   console.log("Finished calling init()");
 }
-// localStorage.setItem("scoreCounter", scoreCounter);
 
-function renderHighscores() {
+function renderHighscores(highScoresArr) {
   highscoresList.innerHTML = "";
-
+  console.log ("high scores array in render highscore: ", highScoresArr);
   // Render a new li for each highscore
-  for (var i = 0; i < highscoresArray.length; i++) {
-    var highscoresItem = highscoresArray[i];
+  for (var i = 0; i < highScoresArr.length; i++) {
+    var highscoresItem = highScoresArr[i];
 
     var li = document.createElement("li");
 
@@ -233,20 +236,21 @@ function renderHighscores() {
     highscoresList.appendChild(li);
   }
 }
-
+var storedHighscores;
 function init() {
   // Get stored todos from localStorage
-  // Parsing the JSON string to an object
-  var storedHighscores = JSON.parse(localStorage.getItem("highscoresArray"));
+  // Parsing the JSON string to an object;
+  storedHighscores = JSON.parse(localStorage.getItem("highscoresArray"));
 
   // If highsores were retrieved from localStorage, update the highscores array to it
   if (storedHighscores !== null) {
-    highscoresArray = storedHighscores;
+    //highscoresArray = storedHighscores;
+    console.log("highscore array is: ", highscoresArray);
   }
 
   // Render todos to the DOM
   console.log("About to call renderHighscores()");
-  renderHighscores();
+  renderHighscores(highscoresArray);
   console.log("finished calling renderHighscores())");
 }
 
@@ -256,40 +260,35 @@ function storeHighscores() {
 
 clearHighscores.addEventListener("click", function (event) {
   event.preventDefault();
+  highscoresArray = [];
+  storeHighscores = [];
 
-  console.log("clicked clear highscores!")
   for (var i = 0; i < highscoresArray.length; i++) {
-    highscoresArray.pop();
-  }
-  renderHighscores();
+     highscoresArray = highscoresArray.pop();
+     storedHighscores = storeHighscores.pop();
+ }
+  localStorage.clear();
+  renderHighscores(highscoresArray);
 });
 
 goBack.addEventListener("click", function (event) {
   event.preventDefault();
 
-  navTimer.style.display = "inline-block";
-  scoreContainer.style.display = "none";
-  highscores.style.display = "none";
-  highscoresHeader.style.display = "none";
-  goBack.style.display = "none";
-  clearHighscores.style.display = "none";
-  startContainer.style.display = "block";
-  highscoresList.style.display = "none";
-  timeleft = 75;
-  currentQuestionIndex = 0;
-  finalScore = "";
+  window.location.reload();
 });
 
-navHighscores.addEventListener("click", function() {
+navHighscores.addEventListener("click", function (event) {
+  event.preventDefault();
+
   startContainer.style.display = "none";
   scoreRenderDisplayOff();
   navTimer.style.display = "none";
   scoreContainer.style.display = "none";
   highscores.style.display = "block";
   highscoresHeader.style.display = "block";
+
   goBack.style.display = "inline-block";
   clearHighscores.style.display = "inline-block";
-
   goBack.textContent = "Go Back";
   clearHighscores.textContent = "Clear Highscores";
   init();
