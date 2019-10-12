@@ -53,13 +53,12 @@ h1 {
   padding: 20px;
 }
 
-#btnStart, #A, #B, #C, #D {
+#btnStart, #A, #B, #C, #D, #submitBtn, button {
   background-color: #8acbfd;
-  padding: 10px;
-
+  padding: 15px;
 }
 
-#btnStart:hover, #A:hover, #B:hover, #C:hover, #D:hover {
+#btnStart:hover, #A:hover, #B:hover, #C:hover, #D:hover, #submitBtn:hover {
   background-color: #2185d0;
   cursor: pointer;
 }
@@ -91,7 +90,7 @@ h1 {
   font-size: 17px;
 }
 
-#timer {
+#navTimer {
   float: right;
   color: black;
   text-align: center;
@@ -114,4 +113,30 @@ h1 {
 #scoreContainer {
   padding: 10px;
   text-align: center;
+}
+
+#finalScore, #enterInitials, #initialsText, #allDone, #submitBtn {
+  display: none;
+}
+
+#initialsTextarea, #submitBtn {
+  text-align: center;
+  margin: 0 auto;
+}
+
+#highscoreButtons {
+  text-align: center;
+}
+
+#goBack, #clearHighscores, #initialsText {
+  display: inline-block;
+  margin: 0 auto;
+  align-items: center;
+}
+
+#enterInitials, #initialsText, #submitBtn {
+  display: inline-block;
+  margin: 10px auto;
+  align-items: center;
+  padding: 5px;
 }
