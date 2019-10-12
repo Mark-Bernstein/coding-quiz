@@ -140,3 +140,10 @@ h1 {
   align-items: center;
   padding: 5px;
 }
+
+#highscoresList {
+  width: 300px;
+  margin: auto;
+  padding: 20px;
+  text-align: left;
+}
