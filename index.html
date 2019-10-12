@@ -1,50 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./style.css" />
-    <title>Coding Quiz Challenge</title>
-</head>
+    <title>Auth Form</title>
+  </head>
+  <body>
+    <div class="clearfix">
+      <div class="card">
+        <h2>Sign Up</h2>
+        <form method="POST">
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" placeholder="janedoe@mail.com" />
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="supersecure123" />
+          </div>
+          <div id="msg"></div>
+          <button id="sign-up">Sign Up</button>
+        </form>
+      </div>
 
-<body>
-    <header>
-        <div class="navBar">
-            <a href="#highScores">View Highscores</a>
-            <div id="timer">Time: 0</div>
-        </div>
-
-    </header>
-    <div class="container">
-        <div id="startContainer">
-            <h1>Coding Quiz Challenge</h1>
-            <p>
-                Try to answer the following code-related questions within the time limit. </p>
-            <p>
-                Keep in mind that incorrect answers will penalize your score\time by ten seconds!
-            </p>
-            <button id="btnStart">Start Quiz</button>
-        </div>
-
-        <div id="quiz" style="display: none">
-            <hr>
-            <div id="question"></div>
-            <hr>
-            <div id="choices">
-                <div class="questionChoice" id="A" onclick="checkAnswer(questions[currentQuestionIndex].choices[0])"></div>
-                <div class="questionChoice" id="B" onclick="checkAnswer(questions[currentQuestionIndex].choices[1])"></div>
-                <div class="questionChoice" id="C" onclick="checkAnswer(questions[currentQuestionIndex].choices[2])"></div>
-                <div class="questionChoice" id="D" onclick="checkAnswer(questions[currentQuestionIndex].choices[3])"></div>
-            </div>
-            <hr>
-        </div>
-
-        <div id="scoreContainer" style="display: none"></div>
-
+      <div class="card">
+        <h2>Last Registered User:</h2>
+        <p><strong>Email:</strong> <span id="user-email"></span></p>
+        <p><strong>Password:</strong> <span id="user-password"></span></p>
+      </div>
     </div>
-    <script src="./questions.js"></script>
-</body>
-
+    <script src="./script.js"></script>
+  </body>
 </html>
