@@ -29,4 +29,5 @@ After the game ends, the user can save their initials and score to a highscores 
 
 No installation necessary. Project is hosted here: https://mark-bernstein.github.io/coding-quiz/
 
+## Below is a screenshot of the loaded homepage of the app:
 ![Coding Quiz App Screenshot](/quizStart.PNG)
