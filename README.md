@@ -28,3 +28,5 @@ The timer stops when all questions have been answered or the timer reaches 0.
 After the game ends, the user can save their initials and score to a highscores view using local storage.
 
 No installation necessary. Project is hosted here: https://mark-bernstein.github.io/coding-quiz/
+
+![Coding Quiz App Screenshot](/quizStart.PNG)
